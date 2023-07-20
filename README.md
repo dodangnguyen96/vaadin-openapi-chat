@@ -21,9 +21,12 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 public class HeaderUtil {
-public static String getAuthorizationHeader() {
+public static String getHeader(String headerName) {
 RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+if (requestAttributes instanceof ServletRequestAttributes) {
 HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
-return request.getHeader("Authorization");
+return request.getHeader(headerName);
+}
+return null;
 }
 }
