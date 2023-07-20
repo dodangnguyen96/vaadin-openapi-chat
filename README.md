@@ -14,3 +14,16 @@ String modifiedJson = json.replaceAll("\"(\\w+)\":", "$1:");
         System.out.println(modifiedJson);
     }
 }
+
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import javax.servlet.http.HttpServletRequest;
+
+public class HeaderUtil {
+public static String getAuthorizationHeader() {
+RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
+return request.getHeader("Authorization");
+}
+}
