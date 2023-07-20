@@ -2,13 +2,15 @@ Pattern pattern = Pattern.compile("\"(.*?)\":\\s*\"(.*?)\"");
 Matcher matcher = pattern.matcher(input);
 StringBuilder sb = new StringBuilder();
 
-            while (matcher.find()) {
-                String key = matcher.group(1);
-                String value = matcher.group(2);
-                sb.append(key).append(":\"").append(value).append("\",");
-            }
+package com.example.teslocal;
 
-            String result = sb.toString().substring(0, sb.length() - 1).trim();
+public class ReplaceString {
+public static void main(String[] args) {
+String json = "{\n  \"service\": \"dental\",\n  \"plan\": \"basic\"\n,\n  \"npi\": 12321321\n}";
+System.out.println(json.trim());
+// Remove double quotes around keys
+String modifiedJson = json.replaceAll("\"(\\w+)\":", "$1:");
 
-
-            return result;
+        System.out.println(modifiedJson);
+    }
+}
